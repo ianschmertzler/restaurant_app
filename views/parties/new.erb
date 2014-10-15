@@ -2,32 +2,41 @@
 
 <h2 class="newform">
 	<form action="/parties" method="post">
-		<input type="text" name="party[name]"/><br>
-		<input type="text" name="party[party_head_name]"/><br>
-
+		Name of Party <input type="text" name="party[name]"/><br>
+		Name of Party Head<input type="text" name="party[party_head_name]"/><br>
+		Party Size <input type="number" name="party[size]"/?><br>
 		
 		Allergies <div class="allergen_form">
-			<input id="nuts"type="radio" name="food[allergen]" value="nuts"/>
+			<input id="nuts"type="radio" name="party[allergen]" value="nuts"/>
 			<label for="nuts">Nuts</label>
-			<input id="peanuts"type="radio" name="food[allergen]" value="peanuts"/>
+			<input id="peanuts"type="radio" name="party[allergen]" value="peanuts"/>
 			<label for="peanuts">Peanuts</label>
-			<input id="shellfish"type="radio" name="food[allergen]" value="shellfish"/>
+			<input id="shellfish"type="radio" name="party[allergen]" value="shellfish"/>
 			<label for="shellfish">Shellfish</label>
-			<input id="gluten"type="radio" name="food[allergen]" value="gluten"/>
+			<input id="gluten"type="radio" name="party[allergen]" value="gluten"/>
 			<label for="gluten">Gluten</label>
-			<input id="lactose"type="radio" name="food[allergen]" value="lactose"/>
+			<input id="lactose"type="radio" name="party[allergen]" value="lactose"/>
 			<label for="lactose">Lactose</label>
 		</div>
 		
 		Diet <div class="diet_attribute_form">
-			<input id="vegan"type="radio" name="food[diet]" value="vegan"/>
+			<input id="vegan" type="radio" name="party[diet]" value="vegan"/>
 			<label for="vegan">Vegan</label>
-			<input id="vegetarian"type="radio" name="food[diet]" value="vegetarian"/>
+			<input id="vegetarian" type="radio" name="party[diet]" value="vegetarian"/>
 			<label for="vegetarian">Vegetarian</label>
-			<input id="pescatarian"type="radio" name="food[diet]" value="pescatarian"/>
+			<input id="pescatarian" type="radio" name="party[diet]" value="pescatarian"/>
 			<label for="pescatarian">Pescatarian</label>
-			<input id="omnivore"type="radio" name="food[diet]" value="omnivore"/>
+			<input id="omnivore" type="radio" name="party[diet]" value="omnivore"/>
 			<label for="omnivore">Omnivore</label>
+		</div>
+		
+		Prepaid? <div class="payment_form">
+		<input id="yes_box" type="radio" name="party[paid]" value="yes"/>
+		<label for="yes_box">Yes</label>
+		<input id="no_box" type="radio" name="party[paid]" value="no"/>
+		<label for="no_box">No</label>
+		<input type="submit" value="Submit"/>
+			
 		</div>
 
 	</form>
