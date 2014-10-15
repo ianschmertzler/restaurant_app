@@ -1,0 +1,16 @@
+<h1>Offerings</h1>
+<h2><a href="/foods/new">Add New Offering</a></h2>
+<TABLE>
+	<th>Type</th>
+	<th>Price</th>
+	<th>Inventory</th>
+	<th>Click to Edit</th>
+	<%@foods.each do |food| %>
+	<tr>
+		<td><%= food.name %></td>
+		<td><%= food.price %></td>
+		<td><%= food.inventory %></td>
+		<td><a class="Edit_Buttons" href="/foods/<%= food.id %>/edit">EDIT?</a></td>
+	</tr>
+	<%end%>
+</TABLE>

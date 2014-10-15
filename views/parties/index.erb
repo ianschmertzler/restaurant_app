@@ -1,0 +1,17 @@
+<h1>Reservations</h1>
+
+<table>
+	<th>Name</th>
+	<th>Size</th>
+	<th>Table</th>
+	<th>Paid Yet?</th>
+
+	<% @parties.each do |party| %>
+	<tr>
+		<td><%= party.name %></td>
+		<td><%= party.size %></td>
+		<td><%= party.table %></td>
+		<td><%= party.paid %></td>
+	</tr>	
+	<% end %>
+</table>
