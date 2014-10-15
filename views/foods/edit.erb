@@ -1,0 +1,54 @@
+<h1>Update <%= food.name %></h1>
+
+<h2 class="editform">
+
+<form action="/foods/<%= @food.id %>" method="post">
+	<input type="hidden" name="_method" value="patch"/>
+
+		Name <input type="text" name="food[name]" value="<%= @food.name %>"/><br>
+		Price <input type="number" name="food[price]"/><br>
+		Cuisine <input type="text" name="food[cuisine]"/><br>
+		Calories <input type="number" name="food[calories]"/><br>
+		Inventory <input type="number" name="food[inventory]"/><br>
+		
+
+		Allergies <div class="allergen_form">
+
+			<input id="nuts"type="radio" name="food[allergen]" value="nuts"/>
+			<label for="nuts">Nuts</label>
+
+			<input id="peanuts"type="radio" name="food[allergen]" value="peanuts"/>
+			<label for="peanuts">Peanuts</label>
+
+			<input id="shellfish"type="radio" name="food[allergen]" value="shellfish"/>
+			<label for="shellfish">Shellfish</label>
+
+			<input id="gluten"type="radio" name="food[allergen]" value="gluten"/>
+			<label for="gluten">Gluten</label>
+
+			<input id="lactose"type="radio" name="food[allergen]" value="lactose"/>
+			<label for="lactose">Lactose</label>
+
+		</div>
+		
+
+		Diet <div class="diet_attribute_form">
+
+			<input id="vegan"type="radio" name="food[diet]" value="vegan"/>
+			<label for="vegan">Vegan</label>
+
+			<input id="vegetarian"type="radio" name="food[diet]" value="vegetarian"/>
+			<label for="vegetarian">Vegetarian</label>
+
+			<input id="pescatarian"type="radio" name="food[diet]" value="pescatarian"/>
+			<label for="pescatarian">Pescatarian</label>
+
+			<input id="omnivore"type="radio" name="food[diet]" value="omnivore"/>
+			<label for="omnivore">Omnivore</label>
+
+		</div>
+
+		<input type="submit" value="Submit"/>
+
+	</form>
+</h2>
