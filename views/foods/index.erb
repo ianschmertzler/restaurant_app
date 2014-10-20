@@ -1,16 +1,54 @@
-<h1>Offerings</h1>
-<h2><a href="/foods/new">Add New Offering</a></h2>
-<TABLE>
-	<th>Type</th>
-	<th>Price</th>
-	<th>Inventory</th>
-	<th>Click to Edit</th>
-	<%@foods.each do |food| %>
-	<tr>
-		<td><%= food.name %></td>
-		<td><%= food.price %></td>
-		<td><%= food.inventory %></td>
-		<td><a class="Edit_Buttons" href="/foods/<%= food.id %>/edit">EDIT?</a></td>
-	</tr>
-	<%end%>
-</TABLE>
+<nav>
+	<h1 class="title">Inventory</h1>
+</nav>
+
+<div class="group">
+<table>
+	<thead>
+		<th>Type</th>
+		<th>Price</th>
+		<th>Inventory</th>
+		<th>Detail</th>
+		<th>Delete</th>
+	</thead>
+	<tbody>
+		<%@foods.each do |food| %>
+		<tr>
+			<td><%= food.name %></td>
+			<td><%= food.price %></td>
+			<td><%= food.inventory %></td>
+			<td>
+				<form action="/foods/<%=food.id%>/edit" method="get">
+				<input type="submit" value="Detail"/>
+				</form>
+			</td>
+			<td>
+				<form class="delete_button" action="/foods/<%= food.id %>" method="post">
+				<input type="hidden" name="_method" value="delete">
+				<input type="submit" value="Delete">
+				</form>
+			</td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+</div>
+
+<div class="group">
+<nav>
+	<ul>
+		<li><a href="/foods/new">Add New Offering</a></li>
+	</ul>
+</nav>
+</div>
+
+<div class="group">
+<nav>
+	<ul>
+		<li><a href="/">Main Menu</a></li>
+		<li><a href="/parties">Reservations</a></li>
+		<li><a href="/orders">Orders</a></li>
+		<li><a href="/chefs">Chef</a></li>
+	</ul>
+</nav>
+</div>

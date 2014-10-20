@@ -1,41 +1,136 @@
-<h1>Update <%= @party.name%></h1>
+<nav>
+	<h1 class="title">Party</h1>
+</nav>
 
-<h2 class="editform">
+<div class="newform">
 
-<form action="/parties/<% party.id %>" method="post">
+<form action="/parties/<%= @party.id %>" method="post">
 	<input type="hidden" name="_method" value="patch"/>
 
-		Name of Party <input type="text" name="party[name]"/><br>
-		Name of Party Head<input type="text" name="party[party_head_name]"/><br>
-		Party Size <input type="number" name="party[size]"/><br>
+		Name of Party <input type="text" name="party[name]" value="<%= @party.name%>"/><br>
+		Name of Party Head<input type="text" name="party[party_head_name]" value="<%= @party.party_head_name%>"/><br>
+		Party Size <input type="number" name="party[attendees]" value="<%= @party.attendees%>"/><br><br><hr>
 		
 		Allergies <div class="allergen_form">
-			<input id="nuts"type="radio" name="party[allergen]" value="nuts"/>
+
+
+			<input id="none"type="radio" name="party[allergen]" value="none" 
+			<%if @party.allergen=='none'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+			<label for="none">None</label>
+
+			<input id="nuts" type="radio" name="party[allergen]" value="nuts"
+			<%if @party.allergen=='nuts'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+
 			<label for="nuts">Nuts</label>
-			<input id="peanuts"type="radio" name="party[allergen]" value="peanuts"/>
+
+			<input id="peanuts"type="radio" name="party[allergen]" value="peanuts"
+			<%if @party.allergen=='peanuts'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+
 			<label for="peanuts">Peanuts</label>
-			<input id="shellfish"type="radio" name="party[allergen]" value="shellfish"/>
+
+			<input id="shellfish"type="radio" name="party[allergen]" value="shellfish"
+			<%if @party.allergen=='shellfish'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="shellfish">Shellfish</label>
-			<input id="gluten"type="radio" name="party[allergen]" value="gluten"/>
+
+			<input id="gluten"type="radio" name="party[allergen]" value="gluten"
+			<%if @party.allergen=='gluten'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="gluten">Gluten</label>
-			<input id="lactose"type="radio" name="party[allergen]" value="lactose"/>
+
+			<input id="lactose"type="radio" name="party[allergen]" value="lactose"
+			<%if @party.allergen=='lactose'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="lactose">Lactose</label>
-		</div>
+
+		</div><hr>
 		
+
 		Diet <div class="diet_attribute_form">
-			<input id="vegan" type="radio" name="party[diet]" value="vegan"/>
+
+			<input id="none"type="radio" name="party[diet_flags]" value="none"
+			<%if @party.diet_flags=='none'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+			<label for="none">None</label>
+
+			<input id="vegan"type="radio" name="party[diet_flags]" value="vegan"
+			<%if @party.diet_flags=='vegan'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="vegan">Vegan</label>
-			<input id="vegetarian" type="radio" name="party[diet]" value="vegetarian"/>
+
+			<input id="vegetarian"type="radio" name="party[diet_flags]" value="vegetarian"
+			<%if @party.diet_flags=='vegetarian'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="vegetarian">Vegetarian</label>
-			<input id="pescatarian" type="radio" name="party[diet]" value="pescatarian"/>
+
+			<input id="pescatarian"type="radio" name="party[diet_flags]" value="pescatarian"
+			<%if @party.diet_flags=='pescatarian'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="pescatarian">Pescatarian</label>
-			<input id="omnivore" type="radio" name="party[diet]" value="omnivore"/>
+
+			<input id="omnivore"type="radio" name="party[diet_flags]" value="omnivore"
+			<%if @party.diet_flags=='omnivore'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="omnivore">Omnivore</label>
 
+		</div><hr><br>
+
+		Returning Customer? <input id="Returning Customer" type="radio" name="party[past_attendance]" 
+			<%if @party.past_attendance=="yes"%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+		/><br>
+		
 		Prepaid? <div class="payment_form">
 		<input id="yes_box" type="radio" name="party[paid]" value="yes"/>
 		<label for="yes_box">Yes</label>
 		<input id="no_box" type="radio" name="party[paid]" value="no"/>
-		<label for="no_box">No</label>
-		<input type="submit" value="Submit"/>
+		<label for="no_box">No</label><br>
+		
+	<input type="submit" value="Submit"/>
+</form>
+</div>
+
+<nav>
+	<ul>
+		<li><a href="/parties">Go Back</a></li>
+	</ul>
+</nav>
 			

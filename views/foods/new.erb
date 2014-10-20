@@ -1,34 +1,59 @@
-<h1>Add an item</h1>
+<% if @errors %>
+	<div class="errors">
+		<h1>That food type has already been entered</h1>
+		<a href="/foods/new">Try Again</a>
+		<a href="/foods">Back</a>
+	</div>
+	<%else%>
+<%end%>
 
-<h2 class="newform">
+<nav>
+	<h1 class="title">Add an Item</h1>
+</nav>
+<br>
+
+<div class="newform">
 
 	<Form action="/foods" method="post">
 		Name <input type="text" name="food[name]"/><br>
 		Price <input type="number" name="food[price]"/><br>
 		Cuisine <input type="text" name="food[cuisine]"/><br>
 		Calories <input type="number" name="food[calories]"/><br>
-		Inventory <input type="number" name="food[inventory]"/><br>
+		Inventory <input type="number" name="food[inventory]"/><br><br>
 		
-		Allergies <div class="allergen_form">
+		Allergies<hr> <div class="allergen_form">
+		
 			<input id="nuts"type="radio" name="food[allergen]" value="nuts"/>
 				<label for="nuts">Nuts</label>
+
 			<input id="peanuts"type="radio" name="food[allergen]" value="peanuts"/>
 				<label for="peanuts">Peanuts</label>
+			
 			<input id="shellfish"type="radio" name="food[allergen]" value="shellfish"/>
 				<label for="shellfish">Shellfish</label>
+			
 			<input id="gluten"type="radio" name="food[allergen]" value="gluten"/>
-				<label for="gluten">Gluten</label>
+				<label for="gluten">Gluten</label><br>
+			
 			<input id="lactose"type="radio" name="food[allergen]" value="lactose"/>
 				<label for="lactose">Lactose</label>
-		</div>
 		
-		Diet <div class="diet_attribute_form">
+		</div><br>
+		
+		Dietary Restrictions<hr> <div class="diet_attribute_form">
+
+			<input id="none"type="radio" name="food[diet_flags]" value="none"/>
+				<label for="none">None</label>
+
 			<input id="vegan"type="radio" name="food[diet_flags]" value="vegan"/>
 				<label for="vegan">Vegan</label>
+
 			<input id="vegetarian"type="radio" name="food[diet_flags]" value="vegetarian"/>
 				<label for="vegetarian">Vegetarian</label>
+
 			<input id="pescatarian"type="radio" name="food[diet_flags]" value="pescatarian"/>
-				<label for="pescatarian">Pescatarian</label>
+				<label for="pescatarian">Pescatarian</label><br>
+
 			<input id="omnivore"type="radio" name="food[diet_flags]" value="omnivore"/>
 				<label for="omnivore">Omnivore</label>
 		</div>
@@ -36,4 +61,12 @@
 		<input type="submit" value="Submit"/>
 
 	</Form>
-</h2>
+</div>
+
+<div class="group">
+<nav>
+	<ul>
+		<li><a href="/foods">Go Back</a></li>
+	</ul>
+</nav>
+</div>

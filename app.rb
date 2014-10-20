@@ -1,9 +1,12 @@
 require 'bundler'
 Bundler.require(:default)
+
 require './connection'
+# require './models/food.rb'
+# require './models/order.rb'
+# require './models/party.rb'
 
 ROOT_PATH = Dir.pwd
-
 Dir[ROOT_PATH+"/models/*.rb"].each{ |file| require file}
 
 
@@ -16,10 +19,14 @@ end
 #Foods Links
 #Index
 get '/foods' do
-	@foods = Foods.all
+	@foods = Food.all
 	erb :'foods/index'
 end
 
+get '/foods/' do
+	@foods = Food.all
+	erb :'foods/index'
+end
 #New
 
 get '/foods/new' do
@@ -37,7 +44,7 @@ end
 
 get '/foods/:id/edit' do
 	@food = Food.find(params[:id])
-	erb :'foods/edit'
+	erb :'/foods/edit'
 end
 
 #Update
@@ -51,7 +58,7 @@ end
 #Show
 
 get '/foods/:id' do
-	food = Food.find(params[:id])
+	@food = Food.find(params[:id])
 	erb :'/foods/show'
 end
 
@@ -67,7 +74,7 @@ end
 #Index
 
 get '/parties' do 
-	@parties = Parties.all
+	@parties = Party.all
 	erb :'parties/index'
 end
 
@@ -115,27 +122,41 @@ end
 
 #Orders Links
 
-#Index
-
 get '/orders' do
+	@orders = Order.all
 	erb :'/orders/index'
 end
 
 get '/orders/new' do
+	@orders = Order.all
+	@parties = Party.all
+	@foods = Food.all
 	erb :'/orders/new'
 end
 
 post '/orders' do
-	order = Order.create(params[:order])
-	redirect "/orders/#{orders.id}"
+	party = Party.find_by_name(params['order']['party'])
+	food = Food.find_by_name(params['order']['food'])
+	new_order = {
+		party: party,
+		food: food
+	}
+	order = Order.create(new_order)
+	redirect "/orders/#{order.id}"
 end
 
 get '/orders/:id/edit' do
-	order = Order.find(params[:id])
+	@order = Order.find(params[:id])
 	erb :'/orders/edit'
 end
 
 patch '/orders/:id' do
+	party = Party.find_by_name(params['order']['party'])
+	food = Food.find_by_name(params['order']['food'])
+	new_order = {
+		party: party,
+		food: food
+	}
 	order = Order.find(params[:id])
 	order.update(params[:order])
 	redirect "/orders/#{order.id}"
@@ -151,7 +172,32 @@ delete '/orders/:id' do
 	redirect '/orders'
 end
 
+get '/chefs' do
+	@orders = Order.all
+	erb :'/chefs/index'
+end
+
+get '/chefs/:id/edit' do
+	@order = Order.find(params[:id])
+	erb :'/chefs/edit'
+end
+
+patch '/chefs/:id' do
+	order = Order.find(params[:id])
+	order.update(params[:order])
+	redirect "/chefs"
+end
 
 
+
+##RECEIPT GENERATION!!!
+
+get '/parties/:id/receipt' do
+	@party = Party.find(params[:id])
+
+	txt = erb(:receipt, :layout => nil)
+	File.write("./receipts/#{@party.name}",txt)
+	redirect '/parties'
+end
 
 

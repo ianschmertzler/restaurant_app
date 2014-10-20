@@ -1,45 +1,72 @@
-<h1>Reservation</h1>
-<h2><% @party.name  %></h2>
+<nav>
+	<h1 class="title">Details</h1>
+<nav>
+	
+<div class="newform">
 
 <table class="showtable">
-	<tr>
-		<td>Party Head</td>
-		<td><%= @party.party_head_name %></td>
-	</tr>
-	<tr>
-		<td>Past Attendance</td>
-		<td><%= @party.past_attendance %></td>
-	</tr>
-	<tr>
-		<td>Members of Party</td>
-		<td><%= @party.attendees %></td>
-	</tr>
-	<tr>
-		<td>Table Number</td>
-		<td><%= @party.table %></td>
-	</tr>
-	<tr>
-		<td>Dietary Restrictions</td>
-		<td><%= @party.diet %></td>
-	</tr>
-	<tr>
-		<td>Allergies</td>
-		<td><%= @party.allergies %></td>
-	</tr>
-	<tr>
-		<td>Paid?</td>
-		<td><%= @party.paid %></td>
-	</tr>
+	<tbody>
+		<tr>
+			<td>Party Head</td>
+			<td><%= @party.party_head_name %></td>
+		</tr>
+		<tr>
+			<td>Past Attendance</td>
+			<td><%= @party.past_attendance %></td>
+		</tr>
+		<tr>
+			<td>Members of Party</td>
+			<td><%= @party.attendees %></td>
+		</tr>
+		<tr>
+			<td>Table Number</td>
+			<td><%= @party.tab_num %></td>
+		</tr>
+		<tr>
+			<td>Dietary Restrictions</td>
+			<td><%= @party.diet_flags %></td>
+		</tr>
+		<tr>
+			<td>Allergies</td>
+			<td><%= @party.allergen %></td>
+		</tr>
+		<tr>
+			<td>Paid?</td>
+			<td><%= @party.paid %></td>
+		</tr>
+	</tbody>
 </table>
 
-<h2>Currently, the party has ordered the following:</h2>
+<%if @party.orders.count != 0%>
+<h1>Orders Placed By Party</h1>
 <table class="current_meal_status">
 	<th>Item</th>
 	<th>Price</th>
 	<% @party.orders.each do |order| %>
 	<tr>
 		<td><%= order.food %></td>
-		<td><%= order.price %></td>
+		<td><%= order.food.price %></td>
 	</tr>
 	<%end%>
 </table>
+<%else%>
+<%end%>
+</div>
+
+<nav>
+	<ul>
+		<li><a href="/parties">CONFIRMED</a></li>
+		<li><a href="/parties/<%=@party.id%>/edit">EDIT</a></li>
+		<li><a href="/parties/<%=@party.id%>/receipt">PRINT RECEIPT</a></li>
+	</ul>
+</nav>
+
+<nav>
+	<ul>
+		<li><a href="/">Reservations</a></li>
+		<li><a href="/foods">Inventory</a></li>
+		<li><a href="/orders">Orders</a></li>
+		<li><a href="/chefs">Chef</a></li>
+	</ul>
+</nav>
+

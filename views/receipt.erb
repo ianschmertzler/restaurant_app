@@ -1,0 +1,8 @@
+Thank you for your patronage
+
+Item			Price
+-------------------------------
+<% @party.orders.each do |order| %>
+<%= order.food.name %> -- $ <%= order.food.price %>
+<%end%>
+-------------------------------

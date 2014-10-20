@@ -1,0 +1,20 @@
+<nav>
+	<h1 class="title">Order of <%= @order.food.name %> for <%= @order.party.name %></h1>
+</nav>
+
+<div class="newform">
+
+	<form action='/chefs/<%=@order.id%>' method="post">
+			<input type="hidden" name="_method" value="patch"/>
+
+		<div class="onoffswitch">
+		    <input type="checkbox" name="order[ready_to_serve]" class="onoffswitch-checkbox" id="myonoffswitch" value="yes">
+		    <label class="onoffswitch-label" for="myonoffswitch">
+		        <span class="onoffswitch-inner"></span>
+		        <span class="onoffswitch-switch"></span>
+		    </label>
+		</div>
+
+		<input type="submit" value="Submit"/>
+	</form>
+</div>

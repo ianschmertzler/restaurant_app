@@ -1,3 +1,18 @@
-<h1>Order <%= @order.id %></h1>
-<h2>For party <%= order.party %></h2>
-<h2>An order of <%= order.food %> was made.</h2>
+<nav>
+	<h1 class="title">Confirm Order</h1>
+</nav>
+
+<div class="newform">
+	<table>
+		<tr><td>Order <%= @order.id %></td></tr>
+		<tr><td>An order of <%= @order.food.name %></td></tr>
+		<tr><td>For <%= @order.party.name %></td></tr>
+	</table>
+</div>
+
+<nav>
+	<ul>
+		<li><a href="/orders">CONFIRMED</a></li>
+		<li><a href="/orders/<%=@order.id%>/edit">EDIT</a></li>
+	</ul>
+</nav>

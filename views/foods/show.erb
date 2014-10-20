@@ -1,4 +1,10 @@
-<h1><%= @food.name %></h1>
+<nav>
+	<h1 class="title">Confirm Entry</h1>
+</nav>
+
+<h2><%= @food.name %></h2>
+
+<div class="newform">
 
 	<table class="showtable">
 		<tr>
@@ -30,4 +36,13 @@
 			<td><%= @food.inventory %></td>
 		</tr>
 	</table>
+
+</div>
+	
+<nav>
+	<ul>
+		<li><a href="/foods">CONFIRMED</a></li>
+		<li><a href="/foods/<%=@food.id%>/edit">EDIT</a></li>
+	</ul>
+</nav>
 

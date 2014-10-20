@@ -1,32 +1,70 @@
-<h1>Update <%= food.name %></h1>
+<nav>
+	<h1 class="title"><%= @food.name %></h1>
+</nav>
 
-<h2 class="editform">
+<div class="newform">
 
 <form action="/foods/<%= @food.id %>" method="post">
 	<input type="hidden" name="_method" value="patch"/>
 
 		Name <input type="text" name="food[name]" value="<%= @food.name %>"/><br>
-		Price <input type="number" name="food[price]"/><br>
-		Cuisine <input type="text" name="food[cuisine]"/><br>
-		Calories <input type="number" name="food[calories]"/><br>
-		Inventory <input type="number" name="food[inventory]"/><br>
+		Price <input type="number" name="food[price]" value ="<%= @food.price %>"/><br>
+		Cuisine <input type="text" name="food[cuisine]" value="<%= @food.cuisine %>"/><br>
+		Calories <input type="number" name="food[calories]" value="<%= @food.calories %>"/><br>
+		Inventory <input type="number" name="food[inventory]" value="<%= @food.inventory %>"/><br>
 		
 
 		Allergies <div class="allergen_form">
 
-			<input id="nuts"type="radio" name="food[allergen]" value="nuts"/>
+
+			<input id="none"type="radio" name="food[allergen]" value="none" 
+			<%if @food.allergen=='none'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+			<label for="none">None</label>
+
+			<input id="nuts" type="radio" name="food[allergen]" value="nuts"
+			<%if @food.allergen=='nuts'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+
 			<label for="nuts">Nuts</label>
 
-			<input id="peanuts"type="radio" name="food[allergen]" value="peanuts"/>
+			<input id="peanuts"type="radio" name="food[allergen]" value="peanuts"
+			<%if @food.allergen=='peanuts'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+
 			<label for="peanuts">Peanuts</label>
 
-			<input id="shellfish"type="radio" name="food[allergen]" value="shellfish"/>
-			<label for="shellfish">Shellfish</label>
+			<input id="shellfish"type="radio" name="food[allergen]" value="shellfish"
+			<%if @food.allergen=='shellfish'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+			<label for="shellfish">Shellfish</label><br>
 
-			<input id="gluten"type="radio" name="food[allergen]" value="gluten"/>
+			<input id="gluten"type="radio" name="food[allergen]" value="gluten"
+			<%if @food.allergen=='gluten'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="gluten">Gluten</label>
 
-			<input id="lactose"type="radio" name="food[allergen]" value="lactose"/>
+			<input id="lactose"type="radio" name="food[allergen]" value="lactose"
+			<%if @food.allergen=='lactose'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="lactose">Lactose</label>
 
 		</div>
@@ -34,16 +72,44 @@
 
 		Diet <div class="diet_attribute_form">
 
-			<input id="vegan"type="radio" name="food[diet]" value="vegan"/>
+			<input id="none"type="radio" name="food[diet_flags]" value="none"
+			<%if @food.diet_flags=='none'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
+			<label for="none">None</label>
+
+			<input id="vegan"type="radio" name="food[diet_flags]" value="vegan"
+			<%if @food.diet_flags=='vegan'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="vegan">Vegan</label>
 
-			<input id="vegetarian"type="radio" name="food[diet]" value="vegetarian"/>
+			<input id="vegetarian"type="radio" name="food[diet_flags]" value="vegetarian"
+			<%if @food.diet_flags=='vegetarian'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="vegetarian">Vegetarian</label>
 
-			<input id="pescatarian"type="radio" name="food[diet]" value="pescatarian"/>
+			<input id="pescatarian"type="radio" name="food[diet_flags]" value="pescatarian"
+			<%if @food.diet_flags=='pescatarian'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="pescatarian">Pescatarian</label>
 
-			<input id="omnivore"type="radio" name="food[diet]" value="omnivore"/>
+			<input id="omnivore"type="radio" name="food[diet_flags]" value="omnivore"
+			<%if @food.diet_flags=='omnivore'%>
+			<%= checked="checked"%>
+			<%else%>
+			<%end%>
+			/>
 			<label for="omnivore">Omnivore</label>
 
 		</div>
@@ -51,4 +117,10 @@
 		<input type="submit" value="Submit"/>
 
 	</form>
-</h2>
+</div>
+<nav>
+	<ul>
+		<li><a href="/foods">Go Back</a></li>
+	</ul>
+</nav>
+

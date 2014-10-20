@@ -1,17 +1,61 @@
-<h1>Reservations</h1>
-
+<nav>
+	<h1 class="title">Reservations</h1>
+<nav>
+	
+<!-- Report Table -->
+<div class="group">
 <table>
-	<th>Name</th>
-	<th>Size</th>
-	<th>Table</th>
-	<th>Paid Yet?</th>
-
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Size</th>
+			<th>Table</th>
+			<th>Paid</th>
+			<th>Details</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
 	<% @parties.each do |party| %>
+	<tbody>
 	<tr>
 		<td><%= party.name %></td>
-		<td><%= party.size %></td>
-		<td><%= party.table %></td>
+		<td><%= party.attendees %></td>
+		<td><%= party.tab_num %></td>
 		<td><%= party.paid %></td>
-	</tr>	
+		<td>
+			<form action="/parties/<%=party.id%>/edit" method="get">
+			<input type="submit" value="Details"/>
+			</form>
+		</td>
+		<td>
+			<form class="delete_button" action="/parties/<%=party.id%>" method="post">
+			<input type="hidden" name="_method" value="delete">
+			<input type="submit" value="Delete">
+			</form>
+		</td>
+	</tr>
+	</tbody>	
 	<% end %>
 </table>
+</div>
+
+
+<div class="group">
+<nav>
+	<ul>
+		<li><a href="./parties/new">New Reservation</a></li>
+	</ul>
+</nav>
+
+</div>
+
+<div class="group">
+	<nav>
+		<ul>
+			<li><a href="/">Main Menu</a></li>
+			<li><a href="/foods">Inventory</a></li>
+			<li><a href="/orders">Orders</a></li>
+			<li><a href="/chefs">Chef</a></li>
+		</ul>
+	</nav>
+</div>

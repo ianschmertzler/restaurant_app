@@ -1,0 +1,43 @@
+<nav>
+	<h1 class="title">Chef Console</h1>
+</nav>
+
+	<table>
+		<thead>
+			<th>Order ID</th>
+			<th>Food</th>
+			<th>Party</th>
+			<th>Status</th>
+		</thead>
+		<tbody>
+			<% @orders.each do |order| %>
+			<tr>
+				<td><%= order.id %></td>
+				<td><%= order.food.name %></td>
+				<td><%= order.party.name %></td>
+				<td>
+					<% if order.ready_to_serve %>
+					Ready to Serve
+					<%else%>
+					<form action="/chefs/<%=order.id%>/edit" method="get">
+					<input type="submit" value="Set to Done"/>
+					</form>
+					<%end%>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+
+<!-- Placed menu below to expedite command interface for chef -->
+<div class="group">
+<nav>
+	<ul>
+		<li><a href="/">Main Menu</a></li>
+		<li><a href="/foods">Inventory</a></li>
+		<li><a href="/orders">Orders</a></li>
+		<li><a href="/parties">Reservations</a></li>
+	</ul>
+</nav>
+</div>

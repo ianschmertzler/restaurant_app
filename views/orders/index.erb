@@ -1,11 +1,67 @@
-<h1>Orders</h1>
+<nav>
+	<h1 class="title">Orders</h1>
+</nav>
 
-<table>
-	<th>Order ID</th>
-	<th>Food</th>
-	<th>Party</th>
-	<% orders.each do |order| %>
-	<td><a href"/order/#{order.id}"><%= order.id %></a></td>
-	<td><a href"/order/#{order.id}"><%= order.food %></a></td>
-	<td><a href"/order/#{order.id}"><%= order.party %></a></td>
-</table>
+
+<div class="group">
+	<table>
+		
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Food</th>
+				<th>Party</th>
+				<th>Ready</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<% @orders.each do |order| %>
+			<tr>
+				<td><%= order.id %></a></td>
+				<td><%= order.food.name %></a></td>
+				<td><%= order.party.name %></a></td>
+				<td><%= order.ready_to_serve %></a></td>
+				
+				<td>
+					<form action="/orders/<%=order.id%>/edit" method="get">
+						<input type="submit" value="Edit"/>
+					</form>
+				</td>
+				
+				<td>
+					<form class="delete_button" action="/orders/<%=order.id%>" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<input type="submit" value="Delete">
+					</form>
+				</td>
+			
+			</tr>
+			<% end %>
+		</tbody>
+
+	</table>
+</div>
+
+
+<div class="group">
+	<nav>
+		<ul>
+			<li><a href="/orders/new">New Order</a></li>
+		</ul>
+	</nav>
+</div>
+
+<div class="group">
+	<nav>
+		<ul>
+			<li><a href="/">Main Menu</a></li>
+			<li><a href="/parties">Reservations</a></li>
+			<li><a href="/foods">Inventory</a></li>
+			<li><a href="/chefs">Chef</a></li>
+		</ul>
+	</nav>
+</div>
+
