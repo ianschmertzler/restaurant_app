@@ -32,4 +32,9 @@ CREATE TABLE orders(
 	ready_to_serve varchar(3)
 );
 
+CREATE TABLE users(
+	id SERIAL PRIMARY KEY,
+	username varchar(255),
+	password varchar(255)
+)
 psql < restaurants_db
